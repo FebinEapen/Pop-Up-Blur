@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlurredPopUp</title>
+</head>
+<body>
+    <div class="main">
+        <div class="content">
+            <h2>Article Title</h2>
+            <button id="open-popup">Popup</button>
+            <p><img src="" alt="img" ></p> 
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, nulla.</p>
+            <p>Maxime, ipsum fugiat cumque nulla quis libero, nostrum quod sequi .</p>
+            <p>Mollitia similique veritatis molestias doloribus ducimus dignissimos.</p>
+            <p>A aut, architecto accusamus doloremque tempora, nihil distinctio.</p>
+            <p>Ratione quaerat libero saepe aliquam sequi! Itaque repudiandae.</p>
+        </div>
+    </div>
+    <div class="popup">
+        <button class="close-btn">&times;</button>
+        <h2>Popup Title</h2>  
+        <p>Ratione quaerat libero saepe aliquam sequi! Itaque repudiandae.</p>
+    </div>
+
+
+
+
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Times New Roman', Times, serif;
+        } 
+        .main{
+            min-height: 100vh;  
+            transition: filter 0ms ease-in-out 300ms;  
+        }
+        .content{
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            margin: 0 auto;   
+        }
+        .content h2{
+            font-size: 40px;
+        } 
+        .content img{
+            width: 400px;
+        } 
+        .content > * {
+            margin: 10px 0px; 
+        }  
+        .popup{
+            position: absolute;
+            top: -100%;  
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95%;  
+            max-width: 450px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;  
+            margin-top: -25px;  
+            opacity: 0;
+            border: solid 1px gray;
+            transition: top 0ms ease-in-out 0ms,
+                        opacity 300ms ease-in-out,
+                        margtin-top 300ms ease-in-out;
+        }  
+        .popup > * {
+            margin: 15px 0px;  
+        } 
+        .popup .close-btn{
+            position: absolute;
+            top: -5px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: #eee;
+            color: #111;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            cursor: pointer;  
+            border: solid 1px gray;
+        }
+        body.active-popup{
+            overflow: hidden;
+        } 
+        body.active-popup .main{
+            filter:blur(5px);
+            background: rgba(0,0,0,0,08);
+            transition: filter 0ms ease-in-out 0ms;
+        } 
+        body.active-popup .popup{
+            top: 50%;
+            opacity: 1;
+            margin-top: 0px;
+            transition: top 0ms ease-in-out 300ms,
+                        opacity 300ms ease-in-out,
+                        margtin-top 300ms ease-in-out;
+
+        }
+    </style>  
+
+
+    <script>
+        document.querySelector("#open-popup").addEventListener("click",function(){
+            document.body.classList.add("active-popup");  
+        });
+        document.querySelector(".popup .close-btn").addEventListener("click",function(){
+            document.body.classList.remove("active-popup");
+        });
+    </script>
+</body>
+</html>
